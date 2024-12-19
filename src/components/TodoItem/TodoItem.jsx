@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled, { css } from "styled-components"
 import {TodoItemContainer} from './TodoItemContainer'
 import {TodoItemCheckbox} from './TodoItemCheckbox';
@@ -35,8 +35,8 @@ export const TodoItem = ({ title, checked, id }) => {
         mutate({id});
     }
   return (
-    <TodoItemContainer>
-      <TodoItemCheckbox checked={checked} />
+      <TodoItemContainer>
+          <TodoItemCheckbox checked={checked} disabled={false} id={id} />
       <Title checked={checked}>
         {title}
           </Title>

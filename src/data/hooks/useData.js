@@ -39,7 +39,24 @@ export const useDeleteTodoItem = () => {
 
     const { mutate } = useMutation({
         mutationFn: ({ id }) => {
-            return LocalStorage.deleteTodoItemToLocalStorage(id);
+            return LocalStorage.deleteTodoItemFromLocalStorage(id);
+        },
+        onSuccess: () => {
+            client.invalidateQueries(['todo']);
+        },
+    });
+
+    return {
+        mutate
+    }
+}
+
+export const useUpdateTodoItem = () => {
+    const client = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: ({ id, checked }) => {
+            return LocalStorage.updateTodoItemInLocalStorage(id, checked);
         },
         onSuccess: () => {
             client.invalidateQueries(['todo']);

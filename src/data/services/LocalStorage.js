@@ -11,7 +11,7 @@ export const LocalStorage = {
           resolve(defaultResult);
           return;
         }
-        const data = JSON.parse(rawData);
+          const data = JSON.parse(rawData);
     
         if (!Array.isArray(data)) {
           resolve(defaultResult);
@@ -33,10 +33,22 @@ export const LocalStorage = {
         });
     },
 
-    deleteTodoItemToLocalStorage: (todoItemId) => {
+    deleteTodoItemFromLocalStorage: (todoItemId) => {
         return new Promise((resolve, reject) => {
             LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
                 const newTodoItems = todoItems.filter(item => item.id !== todoItemId);
+                localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(newTodoItems));
+                resolve();
+            })
+        });
+    },
+    
+    updateTodoItemInLocalStorage: (id, checked) => {
+        return new Promise((resolve, reject) => {
+            LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
+                const newTodoItems = todoItems.map(item =>
+                    item.id === id ? {id: item.id, title: item.title, isDone: checked } : item
+                );
                 localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(newTodoItems));
                 resolve();
             })
