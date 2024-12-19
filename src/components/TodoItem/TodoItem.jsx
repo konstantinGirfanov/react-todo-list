@@ -34,7 +34,9 @@ export const TodoItem = ({ title, checked, id, priority }) => {
     const [color, setColor] = useState(240 - 100 / priority);
     const { mutate } = useDeleteTodoItem();
     const onClickDeleteHandler = () => {
-        mutate({id});
+        if (confirm(`Удалить элемент ${title}?`)) {
+            mutate({ id });
+        }
     }
     return (
         <TodoItemContainer style={{ backgroundColor: `rgb(${color}, 0, 0)` }}>
