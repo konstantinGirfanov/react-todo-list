@@ -21,12 +21,14 @@ export const TodoItems = () => {
   // Фукнция filter вызывает для каждого элемента переданный ей колбек
   // И формирует в filteredBySearchItems новый массив элементов, для которых колбек вернул true
   // Для проверки вхождения подстроки в строку нужно использовать indexOf
-  const filteredBySearchItems = todoItems.filter((todoItem) => {
+    const filteredBySearchItems = todoItems.filter((todoItem) => {
+        const itemTitle = todoItem.title.replace(' ', '').toLowerCase();
+        return itemTitle.includes(searchValue) || searchValue.length < 3;
     // const clearedTodoItemTitle = очистка от пробелов + приведение к одному из регистров
     // const clearedSearchValue = очистка от пробелов + приведение к одному из регистров
     // const isSearched = проверка вхождения строки поиска в строку заголовка
     // return isSearched
-    return true; // удалить после реализации фильтрации
+    // удалить после реализации фильтрации
   })
 
 
