@@ -3,6 +3,7 @@ import styled, { css } from "styled-components"
 import {TodoItemContainer} from './TodoItemContainer'
 import {TodoItemCheckbox} from './TodoItemCheckbox';
 import { useDeleteTodoItem } from '../../data/hooks/useData';
+import { PriorityInput } from './PriorityInput';
 
 const checkedCss = css`
   color: #B5B5BA;
@@ -29,14 +30,16 @@ const Delete = styled.span`
   cursor: pointer;
 `;
 
-export const TodoItem = ({ title, checked, id }) => {
+export const TodoItem = ({ title, checked, id, priority }) => {
+    const [color, setColor] = useState(240 - 100 / priority);
     const { mutate } = useDeleteTodoItem();
     const onClickDeleteHandler = () => {
         mutate({id});
     }
-  return (
-      <TodoItemContainer>
-          <TodoItemCheckbox checked={checked} disabled={false} id={id} />
+    return (
+        <TodoItemContainer style={{ backgroundColor: `rgb(${color}, 0, 0)` }}>
+          <TodoItemCheckbox checked={checked} disabled={false} id={id} priority={priority} />
+          <PriorityInput checked={checked} id={id} priority={priority} setColor={setColor} />
       <Title checked={checked}>
         {title}
           </Title>

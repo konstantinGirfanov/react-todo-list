@@ -29,13 +29,13 @@ export const CheckboxContainer = styled.span(props => {
 });
 
 
-export const TodoItemCheckbox = ({ disabled, checked, id }) => {
+export const TodoItemCheckbox = ({ disabled, checked, id, priority }) => {
     const { mutate } = useUpdateTodoItem();
     const onClickHandler = () => {
         if (disabled) {
             return;
         }
-        mutate({ id, checked: !checked });
+        mutate({ id, checked: !checked, priority });
     };
     return <CheckboxContainer disabled={disabled} checked={checked} onClick={onClickHandler} />
 }
