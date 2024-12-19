@@ -35,8 +35,8 @@ export const TodoItems = () => {
   });
 
   return (
-    <TodoItemsContainer>
-      <SearchInput value={searchValue} />
+      <TodoItemsContainer>
+          <SearchInput value={searchValue} setValue={setSearchValue} />
       {todoItemsElements}
       <NewTodoItem />
     </TodoItemsContainer>
