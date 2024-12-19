@@ -23,13 +23,24 @@ export const LocalStorage = {
     })
   },
 
-  saveTodoItemToLocalStorage: (todoItem) => {
-    return new Promise((resolve, reject) => {
-      LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
-        const newTodoItems = [...todoItems, todoItem];
-        localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(newTodoItems));
-        resolve();
-      })
-    });
-  }
+    saveTodoItemToLocalStorage: (todoItem) => {
+        return new Promise((resolve, reject) => {
+                LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
+                const newTodoItems = [...todoItems, todoItem];
+                localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(newTodoItems));
+                resolve();
+            })
+        });
+    },
+
+    deleteTodoItemToLocalStorage: (todoItemId) => {
+        return new Promise((resolve, reject) => {
+            LocalStorage.getTodoItemsFromLocalStorage().then((todoItems) => {
+                const newTodoItems = todoItems.filter(item => item.id !== todoItemId);
+                localStorage.setItem(TODO_ITEMS_LOCAL_STORAGE_KEY, JSON.stringify(newTodoItems));
+                resolve();
+            })
+        });
+    }
+
 }
