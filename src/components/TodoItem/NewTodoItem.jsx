@@ -5,9 +5,8 @@ import styled from 'styled-components';
 import {useSaveNewTodoItem} from '../../data/hooks/useData';
 
 
-const Input = styled.input`
+const Input = styled.textarea`
   flex-grow: 1;
-
   &::placeholder {
     font-size: 15px;
     color: rgba(63,63,63,0.6);
