@@ -12,7 +12,7 @@ const checkedCss = css`
 
 const Title = styled.span(props => {
     return `
-    width: 80%;
+    width: 60%;
     font-size: 15px;
     overflow-wrap: break-word;
     ${props.checked ? checkedCss : ''};

@@ -14,8 +14,9 @@ export const TodoItems = () => {
     useEffect(() => {
         if (sortedItems) {
             const filteredBySearchItems = todoItems.filter((todoItem) => {
-                const itemTitle = todoItem.title.replace(' ', '').toLowerCase();
-                return itemTitle.includes(searchValue) || searchValue.length < 3;
+                const clearedItemTitle = todoItem.title.replace(/\s+/g, '').toLowerCase();
+                const clearedSearchValue = searchValue.replace(/\s+/g, '').toLowerCase();
+                return clearedItemTitle.includes(clearedSearchValue) || clearedSearchValue.length < 3;
             });
             setSortedItems(filteredBySearchItems.sort((a, b) => b.priority - a.priority));
         }
