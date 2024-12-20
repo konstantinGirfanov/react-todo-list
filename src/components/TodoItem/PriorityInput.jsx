@@ -11,7 +11,7 @@ const Input = styled.select`
 
 export const PriorityInput = ({ id, checked, priority, setPriorityForNewTask, setColor }) => {
     const { mutate } = useUpdateTodoItem();
-    const handleWeekChange = (e) => {
+    const onChangeHandler = (e) => {
         if (setPriorityForNewTask) {
             setPriorityForNewTask(e.target.value);
         }
@@ -22,7 +22,7 @@ export const PriorityInput = ({ id, checked, priority, setPriorityForNewTask, se
     };
 
     return (
-        <Input value={priority} onChange={handleWeekChange} >
+        <Input value={priority} onChange={onChangeHandler} >
             {[1, 2, 3, 4, 5].map(num =>
                 <option key={num} value={num}>
                     {num}
