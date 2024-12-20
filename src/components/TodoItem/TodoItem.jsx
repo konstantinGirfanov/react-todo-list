@@ -31,7 +31,7 @@ const Delete = styled.span`
 `;
 
 export const TodoItem = ({ title, checked, id, priority }) => {
-    const [color, setColor] = useState(240 - 100 / priority);
+    const [color, setColor] = useState(240 - 120 / priority);
     const { mutate } = useDeleteTodoItem();
     const onClickDeleteHandler = () => {
         if (confirm(`Удалить элемент ${title}?`)) {
